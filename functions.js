@@ -1,6 +1,30 @@
-function extractTextToNumberTimeHash($html) {
+var mtsRegex, timeTextRegex;
+
+mtsRegex = new RegExp('MTS (\\d+):');
+timeTextRegex = new RegExp('(\\d{2}:\\d{2}) (.*)');
+
+function getVideos() {
+  $content = $('[id="content"]');
+  return $content.find('.video');
+}
+
+function getVideoHtml(videoLink) {
+  $.ajax({
+    url: videoLink,
+    type: 'GET'
+  })
+  .done(function(html) {
+    var $html;
+
+    $html = $($.parseHTML(html));
+    extractTextToNumberTimeHash($html, textToMtsAndTime);
+  });
+}
+
+function extractTextToNumberTimeHash($html, textToMtsAndTime) {
   var $about, $title, $listOfTerms, titleEResults, mtsNumber;
 
+  debugger;
   $about = $html.find('[class="about"]');
   $title = $about.find('h2');
   $listOfTerms = $about.find('ul li');

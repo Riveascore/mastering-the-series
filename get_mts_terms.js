@@ -1,10 +1,7 @@
-var $content, $videos, timeTextRegex, textToMtsAndTime;
+var $content, $videos;
 
 $content = $('[id="content"]');
 $videos = $content.find('.video');
-
-mtsRegex = new RegExp('MTS (\\d+):');
-timeTextRegex = new RegExp('(\\d{2}:\\d{2}) (.*)');
 
 /*
   {
@@ -19,4 +16,14 @@ timeTextRegex = new RegExp('(\\d{2}:\\d{2}) (.*)');
 textToMtsAndTime = {};
 
 
-extractTextToNumberTimeHash($('html'));
+$videos = getVideos();
+$videos.each(function (idx, obj) {
+  var $obj, videoLink, $html;
+
+  $obj = $(obj);
+  videoLink = $obj.find('[class="play"]').attr('href');
+  $html = getVideoHtml(videoLink);
+
+  debugger;
+  extractTextToNumberTimeHash($html, textToMtsAndTime);
+});
