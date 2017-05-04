@@ -26,6 +26,5 @@ $videos.each(function (idx, obj) {
   videoLink = $obj.find('[class="play"]').attr('href');
   $html = getVideoHtml(videoLink);
 
-  debugger;
   extractTextToNumberTimeHash($html, textToMtsAndTime);
 });
