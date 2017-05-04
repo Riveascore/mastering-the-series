@@ -1,5 +1,6 @@
 var $content, $videos;
 
+// Basic content
 $content = $('[id="content"]');
 $videos = $content.find('.video');
 
