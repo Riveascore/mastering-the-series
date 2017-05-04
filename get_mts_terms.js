@@ -17,6 +17,7 @@ $videos = $content.find('.video');
 textToMtsAndTime = {};
 
 
+// Fetch videos
 $videos = getVideos();
 $videos.each(function (idx, obj) {
   var $obj, videoLink, $html;
